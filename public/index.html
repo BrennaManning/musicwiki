@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-    <title>Sam's Wiki</title>
+    <title>Wiki</title>
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -16,8 +16,7 @@
     <style>
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
-        #todo-list              { margin-bottom:30px; }
-        .strike                 { text-decoration: line-through; }
+        
 
         .sidebar {
             position: absolute;
@@ -54,14 +53,13 @@
 
         <!-- HEADER AND TODO COUNT -->
         <div class="jumbotron text-center">
-            <h1>This is Sam's wiki! <span class="label label-info">{{ pages.length }}</span></h1>
+            <h1>Wikipedia Musica <span class="label label-info">{{ pages.length }}</span></h1>
         </div>
 
-        <!-- TODO LIST -->
         <div id="page-list" class="row">
             <div class="col-sm-4 col-sm-offset-4 sidebar">
-                <!-- LOOP OVER THE TODOS IN $scope.todos -->
                 <span><a class= "btn btn-primary btn-lg" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span> <br></br>
+                >
 
                 <div class="list-group " ng-repeat="page in pages" >
 
