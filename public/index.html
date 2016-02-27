@@ -84,9 +84,10 @@
 
                 <div ng-show="isNewFormOpen" id="newForm" class = "col-sm-4 row col-sm-offset-4 newForm">
                     <form>
-                        <input type="text" class="form-group input-lg text-center" placeholder="Name" ng-model="newPage.name"> <!-- editData -->
+                        <input type="text" class="form-group input-lg text-center" placeholder="Name" ng-model="newPage.name" ng-required=true> <!-- editData -->
                 
                         <textarea class="form-group input-lg text-center" placeholder="Text" ng-model="newPage.text"></textarea>
+                        <input type="text" class="form-group input-lg text-center" placeholder="Author" ng-model="newPage.author" ng-required=true>
 
                         <button type="submit" class="btn btn-primary btn-lg" ng-click="createPage()">Submit</button>
                     </form>
