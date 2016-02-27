@@ -43,6 +43,7 @@ myWiki.controller('mainController', function($scope, $http) {
         console.log($scope.currentPage.showing)
         $scope.currentPage.name = page.name;
         $scope.currentPage.text = page.text;
+        $scope.currentPage.author = page.author;
         $scope.currentPage._id = page._id;
 
     }

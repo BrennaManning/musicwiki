@@ -78,7 +78,7 @@
 
                     <!--  used to be a button!-->
 <!--                     <a type="button" class="list-group-item" ng-click="showPage = !showPage; getPage(page._id)">{{page.name}}, {{page._id}}, {{page.text}}</a> -->
-                    <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}, {{page._id}}, {{page.text}}</a>
+                    <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}, {{page._id}}, {{page.text}}, {{page.author}}</a>
                 </div>
 
             </div>
@@ -88,9 +88,11 @@
                     <span><a class= "btn btn-primary btn-lg" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span> <br></br>
                     <div ng-show="isNewFormOpen" >
                         <form>
-                            <input type="text" class="form-group input-lg text-center" placeholder="Name" ng-model="newPage.name"> <!-- editData -->
+                            <input type="text" class="form-group input-lg text-center" placeholder="Title" ng-model="newPage.name" required=true> <!-- editData -->
                     
                             <textarea class="form-group input-lg text-center" placeholder="Text" ng-model="newPage.text"></textarea>
+
+                            <input type="text" class="form-group input-lg text-center" placeholder= "Author" ng-model="newPage.author" required=true>
 
                             <button type="submit" class="btn btn-primary btn-lg" ng-click="createPage()">Submit</button>
                         </form>
@@ -102,9 +104,9 @@
                     Showing page! {{currentPage.name}}, {{currentPage.text}}, {{currentPage._id}}
 
                     <form>
-                        <input type="text" class="form-control input-lg text-center" placeholder="New Name" ng-model="editedPage.name">
+                        <input type="text" class="form-control input-lg text-center" placeholder="New Name" ng-model="editedPage.name" required=true>
 
-                        <textarea class="form-group input-lg text-center" placeholder="New Text" ng-model="editedPage.text"></textarea>
+                        <textarea class="form-group input-lg text-center" placeholder="{{currentPage.text}}" ng-model="editedPage.text" required=true> </textarea>
                         
                         <!-- createToDo() WILL CREATE NEW TODOS -->
                         <button type="submit" class="btn btn-primary btn-lg" ng-click="editPage()">Submit Edits</button>
