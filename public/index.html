@@ -79,13 +79,22 @@
                 
                         <textarea class="form-group input-lg text-center" placeholder="Text" ng-model="newPage.text"></textarea>
 
-                        <button type="submit" class="btn btn-primary btn-lg" ng-click="createPage(page._id, $index)">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click="createPage()">Submit</button>
                     </form>
                </div>
         </div>
 
                 <div id = "pageshowing" ng-hide="!currentPage.showing" class="col-sm-4 row col-sm-offset-4">
-                Showing page! {{currentPage.name}}, {{currentPage.text}}, {{currentPage._id}}
+                    Showing page! {{currentPage.name}}, {{currentPage.text}}, {{currentPage._id}}
+
+                    <form>
+                        <input type="text" class="form-control input-lg text-center" placeholder="New Name" ng-model="editedPage.name">
+
+                        <textarea class="form-group input-lg text-center" placeholder="New Text" ng-model="editedPage.text"></textarea>
+                        
+                        <!-- createToDo() WILL CREATE NEW TODOS -->
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click="editPage()">Submit Edits</button>
+                    </form>
                </div>
     </div>
 

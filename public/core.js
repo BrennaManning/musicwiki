@@ -7,6 +7,10 @@ myWiki.controller('mainController', function($scope, $http) {
     $scope.currentPage = {};
     $scope.currentPage.showing = false;
 
+    $scope.editedPage = {};
+    $scope.editedPage._id = $scope.currentPage._id;
+    $scope.editedPage.showing = true;
+
 
 
     // when landing on the page, get all todos and show them
@@ -43,19 +47,20 @@ myWiki.controller('mainController', function($scope, $http) {
 
     }
 
-    // $scope.editTodo = function(id, index) {
-    //     console.log($scope.editData[index])
-    //     $http.put('/api/todos/' + id, {text: $scope.editData[index]})
-    //         .success(function(data) {
-    //             $scope.editData[index] = '';
-    //             $scope.todos = data;
-    //             console.log(data)
-    //         })
-    //         .error(function(data) {
-    //             $scope.editData[index] = '';
-    //             console.log('Error: ' + data)
-    //         })
-    // }
+    $scope.editPage = function() {
+        $scope.editedPage._id = $scope.currentPage._id;
+        console.log('Current page id: ' + $scope.currentPage._id)
+        $http.post('/api/pages/edit', $scope.editedPage)
+            .success(function(data) {
+                $scope.currentPage = $scope.editedPage;
+                $scope.editedPage = {}; //clear the form
+                $scope.pages = data;
+                console.log(data)
+            })
+            .error(function(data) {
+                console.log('Error: ' + data)
+            })
+    }
 
     // $scope.completeTodo = function(id, index) {
     //     $http.post('/api/todos/' + id)
