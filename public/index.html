@@ -21,9 +21,11 @@
 
         .sidebar {
             position: absolute;
-            top: 200;
+            top: 300;
             left: 50;
             width: 250px;
+/*            float: left;
+            width: 25%;*/
             margin: 0;
             padding: 0;
             list-style: none;
@@ -37,8 +39,18 @@
             padding: 0;
             list-style: none;
         }
+
+        .editForm {
+            width: 250px;
+            list-style: none;
+        }
         #pageshowing{
             display: inline;
+/*            float: right;*/
+            top: 50;
+            left: 300;
+            width: 25%;
+            list-style: none;
         }
     </style>
 
@@ -46,7 +58,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script><!-- load angular -->
     <script src="core.js"></script>
-
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
 <body ng-controller="mainController">
@@ -61,7 +72,7 @@
         <div id="page-list" class="row">
             <div class="col-sm-4 col-sm-offset-4 sidebar">
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <span><a class= "btn btn-primary btn-lg" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span> <br></br>
+
 
                 <div class="list-group " ng-repeat="page in pages" >
 
@@ -73,14 +84,17 @@
             </div>
 
 
-                <div ng-show="isNewFormOpen" id="newForm" class = "col-sm-4 row col-sm-offset-4 newForm">
-                    <form>
-                        <input type="text" class="form-group input-lg text-center" placeholder="Name" ng-model="newPage.name"> <!-- editData -->
-                
-                        <textarea class="form-group input-lg text-center" placeholder="Text" ng-model="newPage.text"></textarea>
+                <div id="newForm" class = "col-sm-4 row col-sm-offset-4 newForm">
+                    <span><a class= "btn btn-primary btn-lg" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span> <br></br>
+                    <div ng-show="isNewFormOpen" >
+                        <form>
+                            <input type="text" class="form-group input-lg text-center" placeholder="Name" ng-model="newPage.name"> <!-- editData -->
+                    
+                            <textarea class="form-group input-lg text-center" placeholder="Text" ng-model="newPage.text"></textarea>
 
-                        <button type="submit" class="btn btn-primary btn-lg" ng-click="createPage()">Submit</button>
-                    </form>
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="createPage()">Submit</button>
+                        </form>
+                    </div>
                </div>
         </div>
 
