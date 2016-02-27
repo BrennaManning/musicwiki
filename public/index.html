@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-    <title>Wiki</title>
+    <title>Sam's Wiki</title>
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -16,7 +16,8 @@
     <style>
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
-        
+        #todo-list              { margin-bottom:30px; }
+        .strike                 { text-decoration: line-through; }
 
         .sidebar {
             position: absolute;
@@ -64,28 +65,20 @@
 
         <!-- HEADER AND TODO COUNT -->
         <div class="jumbotron text-center">
-            <h1>Wikipedia Musica <span class="label label-info">{{ pages.length }}</span></h1>
+            <h1>This is Sam's wiki! <span class="label label-info">{{ pages.length }}</span></h1>
         </div>
 
+        <!-- TODO LIST -->
         <div id="page-list" class="row">
             <div class="col-sm-4 col-sm-offset-4 sidebar">
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
 
-                <div class="list-group " ng-controller= "pageController" ng-repeat="page in pages" >
-                      
+
+                <div class="list-group " ng-repeat="page in pages" >
 
                     <!--  used to be a button!-->
-<!--                     <a type="button" class="ist-group-item" ng-click="showPage = !showPage; getPage(page._id)">{{page.name}}, {{page._id}}, {{page.text}}</a> -->
+<!--                     <a type="button" class="list-group-item" ng-click="showPage = !showPage; getPage(page._id)">{{page.name}}, {{page._id}}, {{page.text}}</a> -->
                     <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}, {{page._id}}, {{page.text}}</a>
-
-                    <script>
-                    function pageController($scope){
-                      $scope.pages = [
-                        { name: 'WikiPage1', text: 'some text here' },
-                        { name: 'WikiPage2', text: 'description of this thing' },
-                        { name: 'WikiPage3', text: 'third wiki page text'},
-                      ]
-                    }
-                    </script>
                 </div>
 
             </div>
@@ -118,6 +111,7 @@
                     </form>
                </div>
     </div>
+
 
 
 </body>
