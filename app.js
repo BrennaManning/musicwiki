@@ -1,7 +1,7 @@
 //Note: I found the following very helpful, and based my app on the code found here:
 //https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
 
-//This app is on Heroku! https://limitless-sea-62116.herokuapp.com/
+//This app is on Heroku! 
 
 var express  = require('express');
 var index = require('./routes/index.js');                               // create our app w/ express
@@ -13,8 +13,10 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 
 var app = express();
 
-console.log(process.env['MONGOLAB_URI']);
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/todos');
+//console.log(process.env['MONGOLAB_URI']);
+//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/pages'); //not created yet!
+mongoose.connect('mongodb://localhost/pages');
+
 
 var db = mongoose.connection;
 
@@ -32,12 +34,9 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(methodOverride());
 
 
-app.get('/api/todos', index);
-app.post('/api/todos', index);
+app.get('/api/pages', index);
+app.post('/api/pages', index);
 
-app.delete('/api/todos/:todo_id', index);
-app.put('/api/todos/:todo_id', index);
-app.post('/api/todos/:todo_id', index);
 
 app.get('*', index);
 

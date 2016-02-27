@@ -2,26 +2,49 @@
 <!-- <!doctype html> -->
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="myTodo">
+<html ng-app="myWiki">
 <head>
     <!-- META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-    <title>Sam's List</title>
+    <title>Sam's Wiki</title>
 
     <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+   <!-- load bootstrap -->
     <style>
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
         #todo-list              { margin-bottom:30px; }
         .strike                 { text-decoration: line-through; }
+
+        .sidebar {
+            position: absolute;
+            top: 200;
+            left: 50;
+            width: 250px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .newForm {
+            position: fixed;
+            top: 300;
+            left: 350;
+            width: 250px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #pageshowing{
+            display: inline;
+        }
     </style>
 
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script><!-- load angular -->
     <script src="core.js"></script>
 
 </head>
@@ -31,68 +54,42 @@
 
         <!-- HEADER AND TODO COUNT -->
         <div class="jumbotron text-center">
-            <h1>This is Sam's to-do list! <span class="label label-info">{{ todos.length }}</span></h1>
+            <h1>This is Sam's wiki! <span class="label label-info">{{ pages.length }}</span></h1>
         </div>
-<!-- 
-        how to make filter? -->
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="myFilter=null">All</button>
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="myFilter={isCompleted:'false'}">Active</button>
-        <button type="submit" class="btn btn-primary btn-lg" ng-click="myFilter={isCompleted:'true'}">Completed</button>
 
         <!-- TODO LIST -->
-        <div id="todo-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-
+        <div id="page-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4 sidebar">
                 <!-- LOOP OVER THE TODOS IN $scope.todos -->
-                <div class="checkbox item" ng-repeat="todo in todos | filter: myFilter"  >
-                    <div ng-class="{strike: todo.isCompleted}">
-                        <label>
-                            <input type="checkbox" ng-model="completed" ng-disabled="todo.isCompleted" ng-checked="todo.isCompleted" ng-click="completeTodo(todo._id, $index)" > {{ todo.text }}
-                        </label>
-                    </div>
+                <span><a class= "btn btn-primary btn-lg" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span> <br></br>
 
-                    <form>
-                        <div class="form-group">
+                <div class="list-group " ng-repeat="page in pages" >
 
-                            <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                            <input type="text" class="form-control input-lg text-center" placeholder="Edit" ng-model="editData[$index]">
-                        </div>
-
-                        <!-- createToDo() WILL CREATE NEW TODOS -->
-                        <button type="submit" class="btn btn-primary btn-lg" ng-click="editTodo(todo._id, $index)">Edit</button>
-                        <button type="submit" class="btn btn-primary btn-lg" ng-click="deleteTodo(todo._id)">Delete</button>
-                    </form>
-
-                    <form> 
-                        <div class="form-group">
-<!--                             <button type="submit" class="btn btn-primary btn-lg" ng-click="deleteTodo(todo._id)">Delete</button> -->
-                        </div>
-                    </form>
+                    <!--  used to be a button!-->
+<!--                     <a type="button" class="list-group-item" ng-click="showPage = !showPage; getPage(page._id)">{{page.name}}, {{page._id}}, {{page.text}}</a> -->
+                    <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}, {{page._id}}, {{page.text}}</a>
                 </div>
 
-
-
-
             </div>
+
+
+                <div ng-show="isNewFormOpen" id="newForm" class = "col-sm-4 row col-sm-offset-4 newForm">
+                    <form>
+                        <input type="text" class="form-group input-lg text-center" placeholder="Name" ng-model="newPage.name"> <!-- editData -->
+                
+                        <textarea class="form-group input-lg text-center" placeholder="Text" ng-model="newPage.text"></textarea>
+
+                        <button type="submit" class="btn btn-primary btn-lg" ng-click="createPage(page._id, $index)">Submit</button>
+                    </form>
+               </div>
         </div>
 
-        <!-- FORM TO CREATE TODOS -->
-        <div id="todo-form" class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-                <form>
-                    <div class="form-group">
-
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-                        <input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
-                    </div>
-
-                    <!-- createToDo() WILL CREATE NEW TODOS -->
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-                </form>
-            </div>
-        </div>
-
+                <div id = "pageshowing" ng-hide="!currentPage.showing" class="col-sm-4 row col-sm-offset-4">
+                Showing page! {{currentPage.name}}, {{currentPage.text}}, {{currentPage._id}}
+               </div>
     </div>
+
+
 
 </body>
 </html>
