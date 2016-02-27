@@ -53,25 +53,26 @@ router.post('/api/pages', function(req, res) {
 });
 
 // //edit a todo
-// router.put('/api/todos/:todo_id', function(req, res) {
+router.post('/api/pages/edit', function(req, res) {
 
-//   // console.log(req)
-//   Todo.update({
-//     //_id: mongojs.ObjectId(req.body._id)
-//     _id: req.params.todo_id
-//   }, {
-//     text: req.body.text
-//   }, {}, function(err, todo) {
-//     if (err) {res.send(err);}
+  // console.log(req)
+  Page.update({
+    //_id: mongojs.ObjectId(req.body._id)
+    _id: req.body._id
+  }, {
+    name: req.body.name,
+    text: req.body.text
+  }, {}, function(err, page) {
+    if (err) {res.send(err);}
 
-//       // get and return all the todos after you edit
-//   Todo.find(function(err, todos) {
-//     if (err) {res.send(err); return;} 
-//     res.json(todos);
-//     });
-//   });
+      // get and return all the todos after you edit
+  Page.find(function(err, pages) {
+    if (err) {res.send(err); return;} 
+    res.json(pages);
+    });
+  });
 
-// });
+});
 
 
 // //complete a todo

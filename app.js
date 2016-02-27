@@ -36,6 +36,7 @@ app.use(methodOverride());
 
 app.get('/api/pages', index);
 app.post('/api/pages', index);
+app.post('/api/pages/edit', index)
 
 
 app.get('*', index);
