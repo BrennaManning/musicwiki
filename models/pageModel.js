@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 var pageSchema = mongoose.Schema({
   name: String,
   text : String,
-  author: String,
-  lasteditedby: String,
+  author: { type: String, default: "None" },
+  lasteditedby: { type: String, default: "None" }
 });
 
 module.exports = mongoose.model("page", pageSchema); 

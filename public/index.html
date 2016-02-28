@@ -12,6 +12,9 @@
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+<!--     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css"> -->
+
    <!-- load bootstrap -->
     <style>
         html                    { overflow-y:scroll; }
@@ -57,6 +60,8 @@
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script><!-- load angular -->
+<!--     // <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script> -->
+
     <script src="core.js"></script>
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
@@ -78,7 +83,7 @@
 
                     <!--  used to be a button!-->
 <!--                     <a type="button" class="list-group-item" ng-click="showPage = !showPage; getPage(page._id)">{{page.name}}, {{page._id}}, {{page.text}}</a> -->
-                    <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}, {{page._id}}, {{page.text}}, {{page.author}}</a>
+                    <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}, {{page._id}}, {{page.text}}, {{page.author}}, {{page.lasteditedby}}</a>
                 </div>
 
             </div>
@@ -101,18 +106,18 @@
         </div>
 
                 <div id = "pageshowing" ng-hide="!currentPage.showing" class="col-sm-4 row col-sm-offset-4">
-                    Showing page! {{currentPage.name}}, {{currentPage.text}}, {{currentPage._id}}
+                    Showing page! {{currentPage.name}}, {{currentPage.text}}, {{currentPage._id}}, {{currentPage.author}}, {{currentPage.lasteditedby}}
 
                     <form>
-                        <input type="text" class="form-control input-lg text-center" placeholder="New Article Title" ng-model="editedPage.name" required=true ng-value="currentPage.name">
-<!--                         <br> -->
-                        <textarea class="form-group input-lg text-center" placeholder="{{currentPage.text}}" ng-model="editedPage.text" required=true </textarea>
+                        <input type="text" class="form-control input-lg text-center" placeholder="New Article Title" ng-model="editedPage.name" ng-value="currentPage.name"> <!-- ng-value="currentPage.name" ng-required-->
 
-                        <input type = "text" class="form-control input-lg text-center" placeholder="Edited by.." ng-model="editedPage.lasteditedby" required = true>
+                        <textarea class="form-group input-lg text-center" placeholder="{{currentPage.text}}" ng-model="editedPage.text"></textarea>
+
+                        <input type = "text" class="form-control input-lg text-center" placeholder="Edited by..." ng-model="editedPage.lasteditedby">
                         
-                        <!-- createToDo() WILL CREATE NEW TODOS -->
                         <button type="submit" class="btn btn-primary btn-lg" ng-click="editPage()">Submit Edits</button>
                     </form>
+
                </div>
     </div>
 

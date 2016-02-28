@@ -26,6 +26,7 @@ myWiki.controller('mainController', function($scope, $http) {
 
     // when submitting the add form, send the text to the node API
     $scope.createPage = function() {
+        console.log($scope.newPage)
         $http.post('/api/pages', $scope.newPage)
             .success(function(data) {
                 $scope.newPage = {}; // clear the form so our user is ready to enter another
@@ -48,16 +49,32 @@ myWiki.controller('mainController', function($scope, $http) {
         $scope.currentPage.text = page.text;
         $scope.currentPage.author = page.author;
         $scope.currentPage._id = page._id;
+        $scope.currentPage.lasteditedby = page.lasteditedby;
 
     }
 
     $scope.editPage = function() {
         $scope.editedPage._id = $scope.currentPage._id;
-        console.log('Current page id: ' + $scope.currentPage._id)
+        $scope.editedPage.author = $scope.currentPage.author;
+        $scope.editedPage.lasteditedby = $scope.currentPage.lasteditedby;
+        console.log('Current page: ' + $scope.currentPage.name)
+        console.log('Edited page: ' + $scope.editedPage.name)
+
+
+        for (var property in $scope.currentPage) {
+            if ($scope.currentPage.hasOwnProperty(property)) {
+                console.log(property)
+                if(typeof $scope.editedPage[property] === "undefined") {
+                    $scope.editedPage[property] = $scope.currentPage[property]
+                    console.log('edited property ' + property)
+                }
+
+            }
+        }
 
         $http.post('/api/pages/edit', $scope.editedPage)
             .success(function(data) {
-                $scope.currentPage = $scope.editedPage;
+                $scope.currentPage = $scope.editedPage;  // change the form to reflect changes
                 $scope.editedPage = {}; //clear the form
                 $scope.pages = data;
                 console.log(data)

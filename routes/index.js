@@ -40,6 +40,7 @@ router.post('/api/pages', function(req, res) {
   Page.create({
     name: req.body.name,
     text : req.body.text,
+    author: req.body.author,
   }, function(err, page) {
     if (err) {res.send(err);}
 
@@ -61,7 +62,9 @@ router.post('/api/pages/edit', function(req, res) {
     _id: req.body._id
   }, {
     name: req.body.name,
-    text: req.body.text
+    text: req.body.text,
+    author: req.body.author,
+    lasteditedby: req.body.lasteditedby,
   }, {}, function(err, page) {
     if (err) {res.send(err);}
 
