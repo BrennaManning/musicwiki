@@ -41,6 +41,9 @@ myWiki.controller('mainController', function($scope, $http) {
     $scope.showPage = function(page){
         $scope.currentPage.showing = !$scope.currentPage.showing;
         console.log($scope.currentPage.showing)
+
+        // $scope.editedPage.text = $page.text;
+
         $scope.currentPage.name = page.name;
         $scope.currentPage.text = page.text;
         $scope.currentPage.author = page.author;
@@ -51,6 +54,7 @@ myWiki.controller('mainController', function($scope, $http) {
     $scope.editPage = function() {
         $scope.editedPage._id = $scope.currentPage._id;
         console.log('Current page id: ' + $scope.currentPage._id)
+
         $http.post('/api/pages/edit', $scope.editedPage)
             .success(function(data) {
                 $scope.currentPage = $scope.editedPage;

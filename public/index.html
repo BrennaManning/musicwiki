@@ -104,9 +104,9 @@
                     Showing page! {{currentPage.name}}, {{currentPage.text}}, {{currentPage._id}}
 
                     <form>
-                        <input type="text" class="form-control input-lg text-center" placeholder="New Article Title" ng-model="editedPage.name" required=true>
-                        <br>
-                        <textarea class="form-group input-lg text-center" placeholder="{{currentPage.text}}" ng-model="editedPage.text" required=true> </textarea>
+                        <input type="text" class="form-control input-lg text-center" placeholder="New Article Title" ng-model="editedPage.name" required=true ng-value="currentPage.name">
+<!--                         <br> -->
+                        <textarea class="form-group input-lg text-center" placeholder="{{currentPage.text}}" ng-model="editedPage.text" required=true </textarea>
 
                         <input type = "text" class="form-control input-lg text-center" placeholder="Edited by.." ng-model="editedPage.lasteditedby" required = true>
                         
