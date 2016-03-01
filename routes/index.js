@@ -42,6 +42,7 @@ router.post('/api/pages', function(req, res) {
     text : req.body.text,
     author: req.body.author,
   }, function(err, page) {
+    console.log('createPage')
     if (err) {res.send(err);}
 
     // get and return all the todos after you create another

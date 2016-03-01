@@ -56,7 +56,7 @@ myWiki.controller('mainController', function($scope, $http) {
     $scope.editPage = function() {
         $scope.editedPage._id = $scope.currentPage._id;
         $scope.editedPage.author = $scope.currentPage.author;
-        $scope.editedPage.lasteditedby = $scope.currentPage.lasteditedby;
+        //$scope.editedPage.lasteditedby = $scope.currentPage.lasteditedby;
         console.log('Current page: ' + $scope.currentPage.name)
         console.log('Edited page: ' + $scope.editedPage.name)
 

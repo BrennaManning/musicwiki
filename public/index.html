@@ -8,14 +8,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-    <title>Sam's Wiki</title>
+    <title>Wikipediea Musica</title>
 
     <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//bootswatch.com/flatly/bootstrap.min.css">
+    <link rel="stylesheet" type = "text/css" href = "/public/views/style.css">
 
 <!--     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css"> -->
 
-   <!-- load bootstrap -->
+   <!-- load bootstrap 
     <style>
         html                    { overflow-y:scroll; }
         body                    { padding-top:50px; }
@@ -55,7 +56,7 @@
             width: 25%;
             list-style: none;
         }
-    </style>
+    </style> -->
 
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
@@ -69,8 +70,8 @@
     <div class="container">
 
         <!-- HEADER AND TODO COUNT -->
-        <div class="jumbotron text-center">
-            <h1>This is Sam's wiki! <span class="label label-info">{{ pages.length }}</span></h1>
+        <div style="padding-right:0; margin-right: 0px; width: 100%; background-color: #cccccc" class="jumbotron text-center header">
+            <h1>Wikipedia Musica! <span class="label label-info">{{ pages.length }} Pages</span></h1>
         </div>
 
         <!-- TODO LIST -->
@@ -83,7 +84,7 @@
 
                     <!--  used to be a button!-->
 <!--                     <a type="button" class="list-group-item" ng-click="showPage = !showPage; getPage(page._id)">{{page.name}}, {{page._id}}, {{page.text}}</a> -->
-                    <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}, {{page._id}}, {{page.text}}, {{page.author}}, {{page.lasteditedby}}</a>
+                    <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}</a>
                 </div>
 
             </div>
@@ -106,17 +107,21 @@
         </div>
 
                 <div id = "pageshowing" ng-hide="!currentPage.showing" class="col-sm-4 row col-sm-offset-4">
-                    Showing page! {{currentPage.name}}, {{currentPage.text}}, {{currentPage._id}}, {{currentPage.author}}, {{currentPage.lasteditedby}}
+                    <h1>{{currentPage.name}}</h1> <br> <p>{{currentPage.text}}</p> <br> Submitted By: <h6>{{currentPage.author}}<h6> <br> Last Edited By:{{currentPage.lasteditedby}}
 
-                    <form>
-                        <input type="text" class="form-control input-lg text-center" placeholder="New Article Title" ng-model="editedPage.name" ng-value="currentPage.name"> <!-- ng-value="currentPage.name" ng-required-->
+                     <span><a class= "btn btn-primary btn-lg" ng-click="isEditFormOpen = !isEditFormOpen">Edit This Page</a></span> <br></br>
+                    <div ng-show="isEditFormOpen" >
 
-                        <textarea class="form-group input-lg text-center" placeholder="{{currentPage.text}}" ng-model="editedPage.text"></textarea>
+                        <form>
+                            <input type="text" class="form-control input-lg text-center" placeholder="New Article Title" ng-model="editedPage.name" ng-value="currentPage.name"> <!-- ng-value="currentPage.name" ng-required-->
 
-                        <input type = "text" class="form-control input-lg text-center" placeholder="Edited by..." ng-model="editedPage.lasteditedby">
-                        
-                        <button type="submit" class="btn btn-primary btn-lg" ng-click="editPage()">Submit Edits</button>
-                    </form>
+                            <textarea class="form-group input-lg text-center" placeholder="{{currentPage.text}}" ng-model="editedPage.text"></textarea>
+
+                            <input type = "text" class="form-control input-lg text-center" placeholder="Edited by..." ng-model="editedPage.lasteditedby">
+                            
+                            <button type="submit" class="btn btn-primary btn-lg" ng-click="editPage()">Submit Edits</button>
+                        </form>
+                    </div>
 
                </div>
     </div>
