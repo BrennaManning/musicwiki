@@ -40,8 +40,14 @@ myWiki.controller('mainController', function($scope, $http) {
 
     //will toggle, won't switch pages properly... if current page id = input page id...
     $scope.showPage = function(page){
-        $scope.currentPage.showing = !$scope.currentPage.showing;
-        console.log($scope.currentPage.showing)
+        if (page == $scope.currentPage){
+            $scope.currentPage.showing = !$scope.currentPage.showing;
+            console.log($scope.currentPage.showing)
+        }
+        else{
+            $scope.currentPage = page;
+            $scope.currentPage.showing = true;
+        }
 
         // $scope.editedPage.text = $page.text;
 
@@ -59,18 +65,21 @@ myWiki.controller('mainController', function($scope, $http) {
         //$scope.editedPage.lasteditedby = $scope.currentPage.lasteditedby;
         console.log('Current page: ' + $scope.currentPage.name)
         console.log('Edited page: ' + $scope.editedPage.name)
+        console.log($scope.editedPage.text)
 
 
-        for (var property in $scope.currentPage) {
-            if ($scope.currentPage.hasOwnProperty(property)) {
-                console.log(property)
-                if(typeof $scope.editedPage[property] === "undefined") {
-                    $scope.editedPage[property] = $scope.currentPage[property]
-                    console.log('edited property ' + property)
-                }
 
-            }
+        if(typeof $scope.editedPage[name] === "undefined") {
+            $scope.editedPage[name] = $scope.currentPage[name]
+          
         }
+        if(typeof $scope.editedPage.text === "undefined") {
+            $scope.editedPage.text = $scope.currentPage.text
+      
+        }
+
+    
+    
 
         $http.post('/api/pages/edit', $scope.editedPage)
             .success(function(data) {

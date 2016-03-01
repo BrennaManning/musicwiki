@@ -90,17 +90,17 @@
             </div>
 
 
-                <div id="newForm" class = "col-sm-4 row col-sm-offset-4 newForm">
-                    <span><a class= "btn btn-primary btn-lg" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span> <br></br>
+                <div id="newForm" class = "newForm">
+                    <span><a class= "btn btn-primary bit-sm" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span> <br></br>
                     <div ng-show="isNewFormOpen" >
-                        <form>
+                        <form name="newpageform">
                             <input type="text" class="form-group input-lg text-center" placeholder="Title" ng-model="newPage.name" required=true> <!-- editData -->
                     
                             <textarea class="form-group input-lg text-center" placeholder="Text" ng-model="newPage.text" required=true></textarea>
 
                             <input type="text" class="form-group input-lg text-center" placeholder= "Author" ng-model="newPage.author" required=true>
 
-                            <button type="submit" class="btn btn-primary btn-lg" ng-click="createPage()">Submit</button>
+                            <button ng-disabled="newpageform.$invalid" type="submit" class="btn btn-primary btn-sm" ng-click="createPage()">Submit</button>
                         </form>
                     </div>
                </div>
@@ -108,18 +108,19 @@
 
                 <div id = "pageshowing" ng-hide="!currentPage.showing" class="col-sm-4 row col-sm-offset-4">
                     <h1>{{currentPage.name}}</h1> <br> <p>{{currentPage.text}}</p> <br> Submitted By: <h6>{{currentPage.author}}<h6> <br> Last Edited By:{{currentPage.lasteditedby}}
+                    <br>
 
-                     <span><a class= "btn btn-primary btn-lg" ng-click="isEditFormOpen = !isEditFormOpen">Edit This Page</a></span> <br></br>
-                    <div ng-show="isEditFormOpen" >
+                     <span><a class= "btn btn-primary btn-sm" ng-click="isEditFormOpen = !isEditFormOpen">Edit This Page</a></span> <br></br>
+                    <div ng-show="isEditFormOpen">
 
-                        <form>
+                        <form name = "editedby">
                             <input type="text" class="form-control input-lg text-center" placeholder="New Article Title" ng-model="editedPage.name" ng-value="currentPage.name"> <!-- ng-value="currentPage.name" ng-required-->
 
                             <textarea class="form-group input-lg text-center" placeholder="{{currentPage.text}}" ng-model="editedPage.text"></textarea>
 
-                            <input type = "text" class="form-control input-lg text-center" placeholder="Edited by..." ng-model="editedPage.lasteditedby">
+                            <input name = "editedby" type = "text" class="form-control input-lg text-center" placeholder="Edited by..." ng-model="editedPage.lasteditedby" required=true>
                             
-                            <button type="submit" class="btn btn-primary btn-lg" ng-click="editPage()">Submit Edits</button>
+                            <button ng-disabled="editedby.$invalid" type="submit" class="btn btn-primary btn-sm" ng-click="editPage()">Submit Edits</button>
                         </form>
                     </div>
 
