@@ -12,7 +12,12 @@
 
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//bootswatch.com/flatly/bootstrap.min.css">
+<!--     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css"> -->
     <link rel="stylesheet" type = "text/css" href = "/public/views/style.css">
+
+    <link rel="stylesheet" href="//cdn.gitcdn.link/cdn/angular/bower-material/v1.0.6/angular-material.css">
+    <link rel="stylesheet" href="//material.angularjs.org/1.0.6/docs.css">
+
 
 <!--     <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css"> -->
 
@@ -58,10 +63,32 @@
         }
     </style> -->
 
+    <style>
+/*        .tabsdemoDynamicHeight md-content {background-color: transparent !important; }*/
+    .tabsdemoDynamicHeight md-content md-tabs {
+        background: #f6f6f6;
+        border: 1px solid #e1e1e1; 
+    }
+    .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+        background: white; 
+    }
+    .tabsdemoDynamicHeight md-content h1:first-child {
+        margin-top: 0; 
+    }
+    </style>
+
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script><!-- load angular -->
+
 <!--     // <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script> -->
+
+    <script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.js"></script>
+
+    <!-- Angular Material Javascript now available via Google CDN; version 0.6 used here -->
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.js"></script>
 
     <script src="core.js"></script>
 </head>
@@ -88,12 +115,19 @@
                 </div>
 
             </div>
+        </div>
 
-
-                <div id="newForm" class = "newForm">
-                    <span><a class= "btn btn-primary bit-sm" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span> <br></br>
-                    <div ng-show="isNewFormOpen" >
-                        <form name="newpageform">
+<div ng-cloak="" class="tabsdemoDynamicHeight">
+  <md-content>
+    <md-tabs md-dynamic-height="" md-border-bottom="">
+      <md-tab label="new">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Create New Page</h1>
+<!--                 <div id="newForm" class = "newForm" class="col-sm-4 row col-sm-offset-4" ng-hide = "false" aria-hidden="false"> -->
+<!--                     Stuff in tab1!
+                    <span><a class= "btn btn-primary btn-sm" ng-click="isNewFormOpen = !isNewFormOpen">New Page</a></span>
+                    <div ng-show="isNewFormOpen" > -->
+                        <form name="newpageform" class="col-sm-4 row col-sm-offset-4">
                             <input type="text" class="form-group input-lg text-center" placeholder="Title" ng-model="newPage.name" required=true> <!-- editData -->
                     
                             <textarea class="form-group input-lg text-center" placeholder="Text" ng-model="newPage.text" required=true></textarea>
@@ -102,13 +136,17 @@
 
                             <button ng-disabled="newpageform.$invalid" type="submit" class="btn btn-primary btn-sm" ng-click="createPage()">Submit</button>
                         </form>
-                    </div>
-               </div>
-        </div>
+<!--                     </div> -->
+<!--                 </div> -->
+            </md-content>
+        </md-tab>
 
+    <md-tab label="view">
+        <md-content class="md-padding">
+            <h1 class="md-display-2">View Page</h1>
                 <div id = "pageshowing" ng-hide="!currentPage.showing" class="col-sm-4 row col-sm-offset-4">
-                    <h1>{{currentPage.name}}</h1> <br> <p>{{currentPage.text}}</p> <br> Submitted By: <h6>{{currentPage.author}}<h6> <br> Last Edited By:{{currentPage.lasteditedby}}
-                    <br>
+                    <h1>{{currentPage.name}}</h1> <br></br> <p>{{currentPage.text}}</p> <br></br> Submitted By: <h6>{{currentPage.author}}</h6> <br></br> Last Edited By:{{currentPage.lasteditedby}}
+                    <br></br>
 
                      <span><a class= "btn btn-primary btn-sm" ng-click="isEditFormOpen = !isEditFormOpen">Edit This Page</a></span> <br></br>
                     <div  ng-show="isEditFormOpen" >
@@ -123,9 +161,17 @@
                             <button ng-disabled="editedby.$invalid" type="submit" class="btn btn-primary btn-sm" ng-click="editPage()">Submit Edits</button>
                         </form>
                     </div>
-
                </div>
+        </md-content>
+    </md-tab>
+
+    </md-tabs>
+    </md-content>
+
     </div>
+</div>
+<!--         </div>
+    </div> -->
 
 
 

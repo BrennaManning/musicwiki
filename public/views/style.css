@@ -17,13 +17,13 @@
             list-style: none;
         }
         .newForm {
-            position: fixed;
+/*            position: fixed;
             top: 300;
             left: 350;
             width: 250px;
             margin: 0;
             padding: 0;
-            list-style: none;
+            list-style: none;*/
         }
 
         .editForm {

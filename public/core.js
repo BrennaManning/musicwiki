@@ -1,4 +1,4 @@
-var myWiki = angular.module('myWiki', []);
+var myWiki = angular.module('myWiki', ['ngMaterial']);
 
 myWiki.controller('mainController', function($scope, $http) {
     //$scope.formData = {};
