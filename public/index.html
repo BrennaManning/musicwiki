@@ -10,8 +10,11 @@
 
     <title>Wikipediea Musica</title>
 
-    <!-- SCROLLS -->
+    <!-- SCROLLS PUT THIS BACK IN PLS-->
     <link rel="stylesheet" href="//bootswatch.com/flatly/bootstrap.min.css">
+
+
+
 <!--     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css"> -->
     <link rel="stylesheet" type = "text/css" href = "/public/views/style.css">
 
@@ -65,6 +68,9 @@
 
     <style>
 /*        .tabsdemoDynamicHeight md-content {background-color: transparent !important; }*/
+    .tabsdemoDynamicHeight {
+        margin:0 auto;
+    }
     .tabsdemoDynamicHeight md-content md-tabs {
         background: #f6f6f6;
         border: 1px solid #e1e1e1; 
@@ -102,24 +108,11 @@
         </div>
 
         <!-- TODO LIST -->
-        <div id="page-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4 sidebar">
-                <!-- LOOP OVER THE TODOS IN $scope.todos -->
 
-
-                <div class="list-group " ng-repeat="page in pages" >
-
-                    <!--  used to be a button!-->
-<!--                     <a type="button" class="list-group-item" ng-click="showPage = !showPage; getPage(page._id)">{{page.name}}, {{page._id}}, {{page.text}}</a> -->
-                    <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}</a>
-                </div>
-
-            </div>
-        </div>
 
 <div ng-cloak="" class="tabsdemoDynamicHeight">
   <md-content>
-    <md-tabs md-dynamic-height="" md-border-bottom="">
+    <md-tabs md-dynamic-height="true" md-border-bottom="">
       <md-tab label="new">
         <md-content class="md-padding">
           <h1 class="md-display-2">Create New Page</h1>
@@ -144,12 +137,25 @@
     <md-tab label="view">
         <md-content class="md-padding">
             <h1 class="md-display-2">View Page</h1>
-                <div id = "pageshowing" ng-hide="!currentPage.showing" class="col-sm-4 row col-sm-offset-4">
-                    <h1>{{currentPage.name}}</h1> <br></br> <p>{{currentPage.text}}</p> <br></br> Submitted By: <h6>{{currentPage.author}}</h6> <br></br> Last Edited By:{{currentPage.lasteditedby}}
-                    <br></br>
+
+            <div class="row" id="columns">
+                <div id="page-list" class="col-sm-4" style="margin:0px !important; content:none !important">
+                    <div>
+                        <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                        <div class="list-group " ng-repeat="page in pages" >
+                            <a type="button" class="list-group-item" ng-click="showPage(page)">{{page.name}}</a>
+                        </div>
+                    </div>
+                </div>
+<!-- pageshowing -->
+                <div id = "pageshowing" ng-hide="!currentPage.showing" class="col-sm-8" >
+                    <div id="pagestuff">
+                        <h1>{{currentPage.name}}</h1> <br></br> <p>{{currentPage.text}}</p> <br></br> Submitted By: <h6>{{currentPage.author}}</h6> <br></br> Last Edited By:{{currentPage.lasteditedby}}
+                        <br></br>
+                    </div>
 
                      <span><a class= "btn btn-primary btn-sm" ng-click="isEditFormOpen = !isEditFormOpen">Edit This Page</a></span> <br></br>
-                    <div  ng-show="isEditFormOpen" >
+                    <div ng-show="isEditFormOpen" >
 
                         <form name = "editedby">
                             <input type="text" class="form-control input-lg text-center" placeholder="New Article Title" ng-model="editedPage.name" ng-value="currentPage.name"> <!-- ng-value="currentPage.name" ng-required-->
@@ -162,6 +168,9 @@
                         </form>
                     </div>
                </div>
+           </div>
+
+
         </md-content>
     </md-tab>
 
