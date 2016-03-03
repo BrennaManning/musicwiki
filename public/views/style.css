@@ -1,46 +1,47 @@
 
-    <style>
-        html                    { overflow-y:scroll; }
-        body                    { padding-top:50px; }
-        #todo-list              { margin-bottom:30px; }
-        .strike                 { text-decoration: line-through; }
+<style>
+    html                    { overflow-y:scroll; }
+    body                    { padding-top:50px; }
+    .strike                 { text-decoration: line-through; }
 
 
 /*        .editForm {
-            width: 250px;
-            list-style: none;
-        }*/
+        width: 250px;
+        list-style: none;
+    }*/
 
-        #page-list{
-            float:left;
-            overflow:hidden;
-            content:none;
-        } 
-        #pageshowing{
-            display: inline;
-            float: right;
-            overflow:hidden;
-            top: 50;
-            left: 300;
-            list-style: none;
-        }
+    #page-list{
+        float:left;
+        overflow:hidden;
+        content:none;
+    } 
+    #pageshowing{
+        display: inline;
+        float: right;
+        overflow:hidden;
+        top: 50;
+        left: 300;
+        list-style: none;
+    }
 /*        #page-list{
-            float: left;
-            width: 20%;
-        }*/
-        .header{
-            margin-left: 0px;
-            margin-right: 
-        }
+        float: left;
+        width: 20%;
+    }*/
+    .header{
+        margin-left: 0px;
+        margin-right: 
+    }
 
-        .specialjum{
-            padding-left:0;
-            padding-right:0;
-        }
-        *:before {
-            content: none;
-        }
+    .specialjum{
+        margin-top: 100px;
+        padding-left:0;
+        padding-right:0;
+        background-color: #cccccc;
+    }
+    *:before {
+        content: none;
+    }
 
 
 
-    </style>
+</style>

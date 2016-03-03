@@ -52,6 +52,7 @@ myWiki.controller('mainController', function($scope, $http) {
         // $scope.editedPage.text = $page.text;
 
         $scope.currentPage.name = page.name;
+        $scope.currentPage.imageurl = page.imageurl;
         $scope.currentPage.text = page.text;
         $scope.currentPage.author = page.author;
         $scope.currentPage._id = page._id;
@@ -62,6 +63,7 @@ myWiki.controller('mainController', function($scope, $http) {
     $scope.editPage = function() {
         $scope.editedPage._id = $scope.currentPage._id;
         $scope.editedPage.author = $scope.currentPage.author;
+        $scope.editedPage.name = $scope.currentPage.name;
         //$scope.editedPage.lasteditedby = $scope.currentPage.lasteditedby;
         console.log('Current page: ' + $scope.currentPage.name)
         console.log('Edited page: ' + $scope.editedPage.name)
@@ -69,14 +71,20 @@ myWiki.controller('mainController', function($scope, $http) {
 
 
 
-        if(typeof $scope.editedPage[name] === "undefined") {
-            $scope.editedPage[name] = $scope.currentPage[name]
+        if(typeof $scope.editedPage.name === "undefined") {
+            $scope.editedPage.name = $scope.currentPage.name
           
         }
         if(typeof $scope.editedPage.text === "undefined") {
             $scope.editedPage.text = $scope.currentPage.text
       
         }
+
+        if(typeof $scope.editedPage.imageurl === "undefined") {
+            $scope.editedPage.imageurl = $scope.currentPage.imageurl
+      
+        }
+
 
     
     

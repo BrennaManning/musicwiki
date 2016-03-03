@@ -41,6 +41,7 @@ router.post('/api/pages', function(req, res) {
     name: req.body.name,
     text : req.body.text,
     author: req.body.author,
+    imageurl: req.body.imageurl
   }, function(err, page) {
     console.log('createPage')
     if (err) {res.send(err);}
@@ -66,6 +67,7 @@ router.post('/api/pages/edit', function(req, res) {
     text: req.body.text,
     author: req.body.author,
     lasteditedby: req.body.lasteditedby,
+    imageurl: req.body.imageurl
   }, {}, function(err, page) {
     if (err) {res.send(err);}
 
