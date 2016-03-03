@@ -5,39 +5,29 @@
         #todo-list              { margin-bottom:30px; }
         .strike                 { text-decoration: line-through; }
 
-        .sidebar {
-            position: absolute;
-            top: 300;
-            left: 50;
-            width: 250px;
-/*            float: left;
-            width: 25%;*/
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .newForm {
-            position: fixed;
-            top: 300;
-            left: 350;
-            width: 250px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
 
-        .editForm {
+/*        .editForm {
             width: 250px;
             list-style: none;
-        }
+        }*/
+
+        #page-list{
+            float:left;
+            overflow:hidden;
+            content:none;
+        } 
         #pageshowing{
             display: inline;
-/*            float: right;*/
+            float: right;
+            overflow:hidden;
             top: 50;
             left: 300;
-            width: 25%;
             list-style: none;
         }
+/*        #page-list{
+            float: left;
+            width: 20%;
+        }*/
         .header{
             margin-left: 0px;
             margin-right: 
@@ -47,5 +37,10 @@
             padding-left:0;
             padding-right:0;
         }
+        *:before {
+            content: none;
+        }
+
+
 
     </style>
