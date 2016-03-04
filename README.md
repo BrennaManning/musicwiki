@@ -2,6 +2,8 @@
 Base repository for MusicWiki
 OlinJS 2016
 
+http://secure-dusk-96779.herokuapp.com/
+
 DOCUMENTATION
 
 app.js: Main application file. Creates connection to database, creates app endpoints, listens to port 3000 or PORT environment variable.
