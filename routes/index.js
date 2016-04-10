@@ -43,6 +43,7 @@ router.post('/api/pages', function(req, res) {
     author: req.body.author,
     imageurl: req.body.imageurl
   }, function(err, page) {
+    // No reason for console log to be here once submitted
     console.log('createPage')
     if (err) {res.send(err);}
 
@@ -80,7 +81,7 @@ router.post('/api/pages/edit', function(req, res) {
 
 });
 
-
+// No reason for this to be here - please remove all useless code next time you submit an assignment :)
 // //complete a todo
 // router.post('/api/todos/:todo_id', function(req, res) {
 

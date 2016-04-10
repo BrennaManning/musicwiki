@@ -3,6 +3,18 @@
 
 //This app is on Heroku! 
 
+// General comments:
+//   - You had not included serve-fvicon in your package.json. To do so please perform the command "npm install --save serve-favicon"
+//   - Nice use of commenting through the documents
+//   - Remove log statements from the master/prod version of the code..
+//   - Your css should not be under "views" directory..
+//   - Check inline comments on tour core.js for better architecture suggestions
+//   - Remove log statements from production
+//   - Please remove un-used code and indent properly both comments and code
+//   - You should break down your index.html. It is currently an html document doing "everything". That shouldn't
+// 	   be the case. Next time just keep your index file as minimal as possible, i.e. a single ng-view div tag pending 
+//     nested in your ng-app and then call other views to populate the view. Let me know if you have any questions on this.
+
 var express  = require('express');
 var index = require('./routes/index.js');                               // create our app w/ express
 var mongoose = require('mongoose');                     // mongoose for mongodb
