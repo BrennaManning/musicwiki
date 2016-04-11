@@ -1,5 +1,5 @@
 
-<style>
+<style> /* A CSS file isn't wrapped in a style tag! */
     html                    { overflow-y:scroll; }
     body                    { padding-top:50px; }
     .strike                 { text-decoration: line-through; }
@@ -14,7 +14,7 @@
         float:left;
         overflow:hidden;
         content:none;
-    } 
+    }
     #pageshowing{
         display: inline;
         float: right;
@@ -29,7 +29,7 @@
     }*/
     .header{
         margin-left: 0px;
-        margin-right: 
+        margin-right:
     }
 
     .specialjum{

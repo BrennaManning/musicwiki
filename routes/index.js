@@ -1,7 +1,7 @@
 
 var express  = require('express');
 var router = express.Router();                             // create our app w/ express
-var mongoose = require('mongoose'); 
+var mongoose = require('mongoose');
 
 var Page = require('../models/pageModel.js')
 
@@ -14,21 +14,15 @@ router.get('/api/pages', function(req, res) {
 
   // use mongoose to get all todos in the database
 
-  // Page.create({
-  //   name: 'page2',
-  //   text: 'stuff!',
-  // }, function(err, page) 
-  // {
-  //   if(err) console.log('error creating page!');
-  // })
+  // remember to clean up dead code before submitting -- true throughout the app, I'm going to stop making the change
 
   Page.find({}, function(err, pages) {
     // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-    if (err) { 
-      console.log('Error!');
-      res.send(err) 
+    if (err) {
+      // Better: (true throughout app, I won't keep making the change)
+      res.status(500).json(err);
     }
-    console.log('Pages: ' + pages)
+    // remember to clean up debugging mechanisms (e.g. console.logs) before you submit your code!
     res.json(pages); // return all todos in JSON format
   });
 });
@@ -48,7 +42,7 @@ router.post('/api/pages', function(req, res) {
 
     // get and return all the todos after you create another
     Page.find({}, function(err, pages) {
-      if (err) {res.send(err)} 
+      if (err) {res.send(err)}
       res.json(pages);
     });
   });
@@ -73,51 +67,12 @@ router.post('/api/pages/edit', function(req, res) {
 
       // get and return all the todos after you edit
   Page.find(function(err, pages) {
-    if (err) {res.send(err); return;} 
+    if (err) {res.send(err); return;}
     res.json(pages);
     });
   });
 
 });
-
-
-// //complete a todo
-// router.post('/api/todos/:todo_id', function(req, res) {
-
-//   // console.log(req)
-//   Todo.update({
-//     //_id: mongojs.ObjectId(req.body._id)
-//     _id: req.params.todo_id
-//   }, {
-//     isCompleted: true
-//   }, {}, function(err, todo) {
-//     console.log('Todo completed!');
-//     if (err) {res.send(err);}
-
-//       // get and return all the todos after you edit
-//   Todo.find(function(err, todos) {
-//     if (err) {res.send(err); return;} 
-//     res.json(todos);
-//     });
-//   });
-
-// });
-
-// // delete a todo
-// router.delete('/api/todos/:todo_id', function(req, res) {
-//   Todo.remove({
-//       _id : req.params.todo_id
-//   }, function(err, todo) {
-//     if (err)
-//       res.send(err);
-
-//     // get and return all the todos after you create another
-//     Todo.find(function(err, todos) {
-//       if (err) {res.send(err)}
-//       res.json(todos);
-//     });
-//   });
-// });
 
 router.get('*', function(req, res) {
     res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

@@ -1,7 +1,7 @@
 //Note: I found the following very helpful, and based my app on the code found here:
 //https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular
 
-//This app is on Heroku! 
+//This app is on Heroku!
 
 var express  = require('express');
 var index = require('./routes/index.js');                               // create our app w/ express
@@ -14,8 +14,7 @@ var favicon = require('serve-favicon');
 
 var app = express();
 
-//console.log(process.env['MONGOLAB_URI']);
-//mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/pages'); //not created yet!
+// make sure you're cleaning up dead code
 mongoose.connect('mongodb://localhost/pages');
 
 
@@ -49,8 +48,5 @@ var PORT = process.env.PORT || 3000;
 app.listen(PORT, function(err) {
     if(err) console.log(err)
 });
-
-// app.listen(3000);
-// console.log("App listening on port 3000");
 
 module.exports = app;
