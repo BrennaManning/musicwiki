@@ -3,7 +3,7 @@ var myWiki = angular.module('myWiki', ['ngMaterial']);
 myWiki.controller('mainController', function($scope, $http) {
     //$scope.formData = {};
     $scope.newPage = {};
-    
+
     $scope.currentPage = {};
     $scope.currentPage.showing = false;
 
@@ -51,6 +51,10 @@ myWiki.controller('mainController', function($scope, $http) {
 
         // $scope.editedPage.text = $page.text;
 
+        // I'm a little confused here...
+        // Seems to me like either page == $scope.currentPage (the if case)
+        // ... or you've just set $scope.currentPage = page (in the else case)
+        // What will transferring over all of these properties separately do?
         $scope.currentPage.name = page.name;
         $scope.currentPage.imageurl = page.imageurl;
         $scope.currentPage.text = page.text;
@@ -71,23 +75,28 @@ myWiki.controller('mainController', function($scope, $http) {
 
 
 
-        if(typeof $scope.editedPage.name === "undefined") {
+        // Do these three cases ever occur separately? That's how
+        // writing the if statements separately reads to me -- that,
+        // for example, name could be undefined while text & imageurl were defined
+
+        // If they always occur together, figure out a way to collect them into one if statement.
+        if(!$scope.editedPage.name) { // this will do the same thing
             $scope.editedPage.name = $scope.currentPage.name
-          
+
         }
         if(typeof $scope.editedPage.text === "undefined") {
             $scope.editedPage.text = $scope.currentPage.text
-      
+
         }
 
         if(typeof $scope.editedPage.imageurl === "undefined") {
             $scope.editedPage.imageurl = $scope.currentPage.imageurl
-      
+
         }
 
 
-    
-    
+
+
 
         $http.post('/api/pages/edit', $scope.editedPage)
             .success(function(data) {
@@ -100,31 +109,4 @@ myWiki.controller('mainController', function($scope, $http) {
                 console.log('Error: ' + data)
             })
     }
-
-    // $scope.completeTodo = function(id, index) {
-    //     $http.post('/api/todos/' + id)
-    //         .success(function(data) {
-    //             // $scope.editData[index] = '';
-    //             $scope.todos = data;
-    //             console.log(data)
-    //         })
-    //         .error(function(data) {
-    //             // $scope.editData[index] = '';
-    //             console.log('Error: ' + data)
-    //         })
-    // }
-
-
-    // // delete a todo after checking it
-    // $scope.deleteTodo = function(id) {
-    //     $http.delete('/api/todos/' + id)
-    //         .success(function(data) {
-    //             $scope.todos = data;
-    //             console.log(data);
-    //         })
-    //         .error(function(data) {
-    //             console.log('Error: ' + data);
-    //         });
-    // };
-
 });
